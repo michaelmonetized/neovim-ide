@@ -1,17 +1,23 @@
 #!/usr/bin/env zsh
 
-tmux send-keys -t 0 "ollama run llama3.1" C-m
+# open nvim
 tmux send-keys -t 2 "nvim" C-m
-sleep 3
 
-tmux send-keys -t 2 "C-n"
-sleep 1
+# swap panes 3 with 0
+tmux select-pane -t 3
+tmux swap-pane -s 0
 
-tmux send-keys -t 2 ":Minimap" C-m
-tmux send-keys -t 5 "tasksh" C-m
-tmux send-keys -t 5 "exec clear" C-m
-tmux send-keys -t 5 "list" C-m
+# rename 0 to Ollama
+tmux select-pane -t 0 -T "Ollama"
 
+# rename 3 to Console
+tmux select-pane -t 3 -T "Console"
+
+# start ollama and tasksh
+tmux send-keys -t 0 "ollama run llama3.1" C-m
+tmux send-keys -t 5 "task list && tasksh" C-m
+
+# start lazygit if in a git repo
 if [ -d "$PWD/.git" ]; then
   tmux send-keys -t 6 "lazygit" C-m
 else
@@ -29,4 +35,12 @@ else
   esac
 fi
 
+# start nvim-tree and nvim-minimap
 tmux select-pane -t 2
+sleep 3
+
+tmux send-keys -t 2 ":Minimap" C-m
+sleep 1
+
+tmux send-keys -t 2 "C-n"
+

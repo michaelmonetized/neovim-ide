@@ -1,9 +1,76 @@
 #!/usr/bin/env zsh
-ide_path=$PWD
 
-sanitize_session_name() {
-  echo "$1" | tr -cd '[:alnum:]_-'
-}
+##
+# neovim-ide
+# ==========
+# https://github.com/michaelmonetized/neovim-ide
+#
+# MIT License
+#
+# Author: Michael Monetized <michaelmonetized@gmail.com>
+#
+# A script to create a tmux session with neovim and other tools
+# for a given project in an IDE shaped layout.
+#
+# ================================================= #
+# - ollama -|- nvim ---------------------|- Tasks - #
+#           |                            |          #
+#           |                            |          #
+#           |                            |          #
+#           |                            |          #
+# - ChtSh - |                            |- Git --- #
+#           |                            |          #
+#           |                            |          #
+#           |                            |          #
+#           |                            |          #
+#           |                            |          #
+#           |                            |          #
+#           |                            |          #
+#           |- Console ----|- Terminal - |          #
+#           |              |             |          #
+#           |              |             |          #
+#           |              |             |          #
+#           |              |             |          #
+# ================================================= #
+#
+# Usage:
+#   neovim-ide [path] [session name]
+#
+# Examples:
+#   neovim-ide
+#   /opens the IDE in the current dir with the basename/
+#   /or .nvim supplied name as the session name/
+#   /see './.nvim' for an example/
+#
+#   neovim-ide ~/projects/my-project
+#   neovim-ide ~/projects/my-project my-project-session
+#
+# Requirements:
+#   - tmux
+#   - jq
+#   - mkproject
+#   - lazygit
+#   - ollama
+#   - tasksh (Task Warrior)
+#   - nvim (Neovim) /preferably NvChad with optional plugins:
+#     - nvim-minimap
+#     - nvim-tree
+#
+# Configuration:
+#   Change the apps that open in each paned in .../src/neovim-ide-init.sh
+#   Change the project path fir neovim-ide-tnux.sh in .../config/neovim-ide-config.sh
+#
+# Installation:
+#   - install Requirements
+#   - run ./install.sh
+#   (moves the ./src/ folder to ~/bin/,
+#   ./config/ to ~/.config/neovim-ide/
+#   and links ~/bin/neovim-ide/* to ~/.local/bin/*)
+#
+##
+
+
+ide_path=$PWD
 
 if [ -n "$1" ]; then
   ide_path=$1
@@ -37,6 +104,10 @@ if [ -n "$1" ]; then
 fi
 
 eval ide_path="$ide_path"
+
+sanitize_session_name() {
+  echo "$1" | tr -cd '[:alnum:]-_ '
+}
 
 ide_session=$(sanitize_session_name "$(basename "$ide_path")")
 
