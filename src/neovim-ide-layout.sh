@@ -2,7 +2,7 @@
 alias tmux="/opt/homebrew/bin/tmux"
 
 tmux split-window -t 0 -h
-tmux select-pane -t 0 -T "Ollama"
+tmux select-pane -t 0 -T "Agent"
 tmux split-window -t 0 -v
 tmux select-pane -t 1 -T "Cheatsheet"
 tmux resize-pane -t 0 -x 75 -y 31

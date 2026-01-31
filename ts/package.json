@@ -1,0 +1,33 @@
+{
+  "name": "neovim-ide",
+  "version": "1.0.0",
+  "description": "neovim-ide is a script to create a tmux session with neovim and other tools for a given project in an IDE shaped layout, effectively providing a similar toolset and layout to the IDE workflows devs are used to.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelmonetized/neovim-ide.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/michaelmonetized/neovim-ide/issues"
+  },
+  "homepage": "https://github.com/michaelmonetized/neovim-ide#readme",
+  "dependencies": {
+    "@types/node": "^24.0.4",
+    "@types/react": "^19.1.8",
+    "esbuild": "^0.25.5",
+    "execa": "^9.6.0",
+    "ink": "^6.0.1",
+    "react": "^19.1.0",
+    "react-devtools-core": "^6.1.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}

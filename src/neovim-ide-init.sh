@@ -8,13 +8,13 @@ tmux select-pane -t 3
 tmux swap-pane -s 0
 
 # rename 0 to Ollama
-tmux select-pane -t 0 -T "Ollama"
+tmux select-pane -t 0 -T "Agent"
 
 # rename 3 to Console
 tmux select-pane -t 3 -T "Console"
 
 # start ollama and tasksh
-tmux send-keys -t 0 "ollama run llama3.1" C-m
+tmux send-keys -t 0 "cursor-agent" C-m
 tmux send-keys -t 5 "task list && tasksh" C-m
 
 # start lazygit if in a git repo
